@@ -73,16 +73,24 @@ function AdminLogin() {
             </div>
           )}
 
-          <div className="d-grid gap-2">
-            <button type="submit" className="btn btn-primary" disabled={loading}>
-              {loading ? (
-                // Show loading spinner instead of text
-                <Loading_Indicator small={true} />
-              ) : (
-                "Login"
-              )}
-            </button>
-          </div>
+               {/* Button part to show indicator when login */}
+            <div className="d-grid gap-2">
+              <button 
+                type="submit" 
+                className="btn btn-primary d-flex justify-content-center align-items-center" 
+                disabled={loading}
+                style={{ height: "45px" }} // You can fix the height if you want smoother button during spinner
+              >
+                {loading ? (
+                  <div className="spinner-border spinner-border-sm text-light" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                ) : (
+                  "Login"
+                )}
+              </button>
+            </div>
+            
         </form>
 
         <div className="text-center mt-3">
