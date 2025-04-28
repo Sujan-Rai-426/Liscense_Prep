@@ -1,6 +1,6 @@
 from rest_framework import generics
-from Home.models import Question
-from Home.serializers import Question_Serializer
+from Home.models import Chapter, Question
+from Home.serializers import Chapter_Serializer, Question_Serializer
 from Home.permissions import IsAdminUserOrReadOnly
 from rest_framework.permissions import AllowAny 
 
@@ -47,3 +47,11 @@ class AdminLoginAPIView(APIView):
             }, status=status.HTTP_200_OK)
         else:
             return Response({"detail": "Invalid credentials or user is not admin."}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+# Chapter ViewSet
+class ChapterListView(APIView):
+    def get(self, request):
+        chapters = Chapter.objects.all()
+        serializer = Chapter_Serializer(chapters, many=True)
+        return Response(serializer.data)

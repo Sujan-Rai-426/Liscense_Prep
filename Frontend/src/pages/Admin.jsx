@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
 
@@ -9,6 +9,29 @@ function AddQuestion(props) {
   const [question, setQuestion] = useState('');
   const [options, setOptions] = useState(['', '', '', '']);
   const [correctAnswer, setCorrectAnswer] = useState('');
+
+  const [chapters, setChapters] = useState([]);
+  const [selectedChapter, setSelectedChapter] = useState('');
+
+
+    // Fetch chapters when the component mounts
+    useEffect(() => {
+      api
+        .get('/api/v1/chapters/')
+        .then((response) => {
+          if (Array.isArray(response.data)) {
+            setChapters(response.data);
+          } else {
+            console.error("API did not return an array for chapters:", response.data);
+            setChapters([]);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching chapters:", error);
+          setChapters([]);  // fallback to empty array to avoid crash
+        });
+    }, []);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -59,6 +82,8 @@ function AddQuestion(props) {
     <div className="card shadow p-4" style={props.mode}>
       <h2 className="mb-4 text-center">Add New Question</h2>
   
+
+  {/* Shwos question */}
       <div className="mb-3">
         <label className="form-label">Question</label>
         <input
@@ -76,6 +101,8 @@ function AddQuestion(props) {
         />
       </div>
   
+
+  {/* Shows Options field */}
       {options.map((opt, index) => (
         <div key={index} className="mb-3">
           <label className="form-label">Option {String.fromCharCode(65 + index)}</label>
@@ -99,6 +126,8 @@ function AddQuestion(props) {
         </div>
       ))}
   
+
+  {/* Show correct Answer button */}
       <div className="mb-3">
         <label className="form-label">Correct Answer (exact text)</label>
         <input
@@ -115,7 +144,32 @@ function AddQuestion(props) {
           }}
         />
       </div>
-  
+
+
+{/* Select Chapter selecton field */}
+      <div className="mb-3">
+          <label className="form-label">Select Chapter</label>
+          <select
+            value={selectedChapter}
+            onChange={(e) => setSelectedChapter(e.target.value)}
+            className="form-control"
+            style={{
+              backgroundColor: props.mode.backgroundColor === '#f5f7fa' ? '#f0f2f5' : '#2e2e42',
+              color: props.mode.color,
+              border: "1px solid #ced4da",
+              transition: "all 0.3s ease"
+            }}
+          >
+            <option value="">-- Select a Chapter --</option>
+            {Array.isArray(chapters) && chapters.map((chapter) => (
+              <option key={chapter.id} value={chapter.id}>
+                {chapter.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+  {/* Add question button */}
       <div className="d-grid gap-2">
         <button type="submit" className="btn btn-primary">
           Add Question

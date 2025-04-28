@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Question, Option
+from .models import Question, Option, Chapter
 
 # Serializer for the Option model
 class Option_Serializer(serializers.ModelSerializer):
@@ -30,3 +30,15 @@ class Question_Serializer(serializers.ModelSerializer):
             Option.objects.create(question=question, option=opt['option'], is_correct=is_correct)
 
         return question
+
+
+# Chapter Serializer
+class Chapter_Serializer(serializers.ModelSerializer):
+    questions = Question_Serializer(many=True)  # Nested questions for each chapter
+    
+    class Meta:
+        model = Chapter
+        fields = '__all__'
+
+
+
