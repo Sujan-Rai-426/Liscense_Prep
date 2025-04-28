@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import api from '../api'
+import Loading_Indicator from '../components/Loading_Indicator'
 
 function Home() {
     const [questions, setQuestions] = useState([]);
