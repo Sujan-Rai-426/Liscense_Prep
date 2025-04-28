@@ -38,7 +38,8 @@ class Chapter_Serializer(serializers.ModelSerializer):
     
     class Meta:
         model = Chapter
-        fields = '__all__'
+        fields = '__all__'  # Include all fields from the Chapter model
+
 
 
 
