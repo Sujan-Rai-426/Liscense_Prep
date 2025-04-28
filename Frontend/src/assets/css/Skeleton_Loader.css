@@ -5,6 +5,13 @@
     animation: pulse 1.5s infinite ease-in-out;
 }
 
+/* Decrease the gap between options */
+.option {
+    margin-bottom: 5px; /* Decreased margin between options */
+    padding: 0;         /* Remove extra padding if needed */
+}
+
+
 /* Different sizes */
 .skeleton-title {
     height: 20px;
