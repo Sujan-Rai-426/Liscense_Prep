@@ -16,7 +16,7 @@ class Chapter(models.Model):
 # Questions model
 class Question(models.Model):
     question = models.TextField()
-    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, default=1)
+    chapter = models.ForeignKey(Chapter,related_name='questions', on_delete=models.CASCADE, default=1)
     def __str__(self):
         return self.question 
 
