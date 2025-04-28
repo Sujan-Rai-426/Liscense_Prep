@@ -26,7 +26,7 @@ function Navbar(props) {
                                 <Link className="nav-link active" aria-current="page" to="/"> <b>Home</b> </Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/admin"> <b>Admin</b> </Link>
+                                <Link className="nav-link" to="/admin"> <b>Add-Questions</b> </Link>
                             </li>
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" to="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,8 +34,8 @@ function Navbar(props) {
                                 </Link>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <li><Link className="dropdown-item" to="https://www.sujan140.com.np/">Developer</Link></li>
-                                    <li><Link className="dropdown-item" to="/"> BCT Notes </Link></li>
-                                    <li><Link className="dropdown-item" to="/"> BCT License Notes </Link></li>
+                                    <li><Link className="dropdown-item" to="/unavailable"> BCT Notes </Link></li>
+                                    <li><Link className="dropdown-item" to="/unavailable"> BCT License Notes </Link></li>
                                 </ul>
                             </li>
                         </ul>

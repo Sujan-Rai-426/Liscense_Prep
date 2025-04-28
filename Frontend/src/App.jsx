@@ -9,6 +9,7 @@ import ProtectedRoute from './context/ProtectedRoute';
 
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Admin_Signup from "./pages/Admin_Signup";
+import Unavailable from "./pages/Unavailable";
 
 function App() {
 
@@ -42,6 +43,7 @@ function App() {
         <Routes>
             {/* Routes that don't need Authorization */}
           <Route exact path="/" element={<Home mode={mode} />} />
+          <Route exact path="/unavailable" element={<Unavailable mode={mode} />} />
           <Route exact path="/admin_login" element={<Admin_Login mode={mode} />} />
           <Route exact path='/admin_signup' element={ <Admin_Signup mode={mode} /> } />
 
