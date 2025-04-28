@@ -42,7 +42,7 @@ function App() {
         <Routes>
             {/* Routes that don't need Authorization */}
           <Route exact path="/" element={<Home mode={mode} />} />
-          <Route exact path="/admin_login" element={<Admin_Login />} />
+          <Route exact path="/admin_login" element={<Admin_Login mode={mode} />} />
           <Route exact path='/admin_signup' element={ <Admin_Signup mode={mode} /> } />
 
           {/* Protected Routes where only logged-in admins can access */}

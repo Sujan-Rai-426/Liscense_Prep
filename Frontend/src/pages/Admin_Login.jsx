@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api';
 
-function AdminLogin() {
+function AdminLogin(props) {
   const [username, setUsername] = useState('');  
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -35,8 +35,8 @@ function AdminLogin() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
-      <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '400px' }}>
+    <div className="d-flex justify-content-center align-items-center vh-100" style={props.mode}>
+      <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '400px', ...props.mode }}>
         <h2 className="text-center text-primary mb-4">Admin Login</h2>
 
         <form onSubmit={handleSubmit}>
