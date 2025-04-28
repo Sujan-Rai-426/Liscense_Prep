@@ -28,6 +28,9 @@ function Navbar(props) {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/admin"> <b>Add-Questions</b> </Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/unavailable"> <b>Dummy-Exam</b> </Link>
+                            </li>
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle" to="/" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Visit
