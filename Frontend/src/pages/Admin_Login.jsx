@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import api from '../api';
-import Loading_Indicator from '../components/Loading_Indicator'; 
 
 function AdminLogin() {
   const [username, setUsername] = useState('');  
