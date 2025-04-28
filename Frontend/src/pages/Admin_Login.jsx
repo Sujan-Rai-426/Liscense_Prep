@@ -90,12 +90,12 @@ function AdminLogin() {
                 )}
               </button>
             </div>
-            
+
         </form>
 
         <div className="text-center mt-3">
           <p className="text-muted">
-            Don't have an account? <a href="/admin_signup" className="text-primary">Join Team</a>
+            Don't have an account? <Link to="/admin_signup" className="text-primary">Join Team</Link>
           </p>
         </div>
       </div>
