@@ -4,15 +4,18 @@ import Loading_Indicator from '../components/Loading_Indicator'
 
 function Home() {
     const [questions, setQuestions] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         api
             .get("/api/v1/questions/")
             .then((response) => {
                 setQuestions(response.data);
+                setLoading(false); // Set loading to false after data is fetched
                 console.log("Fetched Questions:", response.data); // 👈 to show response is console
             })
             .catch((error) => console.error("Error fetching questions: ", error));
+            setLoading(false); // Set loading to false in case of error as well
     }, []);
 
 
