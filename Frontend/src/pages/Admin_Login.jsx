@@ -1,50 +1,45 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
-import api from '../api'; 
+import { useNavigate } from 'react-router-dom';
+import api from '../api';
+import Loading_Indicator from '../components/Loading_Indicator'; 
 
 function AdminLogin() {
   const [username, setUsername] = useState('');  
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  
-  const navigate = useNavigate(); // Initialize the navigate function
+  const [loading, setLoading] = useState(false); // Add loading state
 
+  const navigate = useNavigate();
 
-
-  // For login successful
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+    setLoading(true); // Start loading when login starts
+
     try {
       const response = await api.post('/api/v1/admin-login/', {
         username,
         password
       });
-  
+
       if (response.status === 200) {
-        // Store token and logged-in status
         localStorage.setItem('token', response.data.access_token);
-        localStorage.setItem('loggedIn', 'true'); // Set loggedIn to true
+        localStorage.setItem('loggedIn', 'true');
+
         console.log('Login successful!');
-  
-        // Optionally log to check if loggedIn is correctly set
-        const isLoggedIn = localStorage.getItem('loggedIn');
-        console.log(isLoggedIn);  // Should log "true"
-  
-        navigate('/admin'); // Redirect to admin
+        navigate('/admin');
       }
     } catch (err) {
       setError('Invalid credentials or user is not admin.');
+    } finally {
+      setLoading(false); // Always stop loading
     }
   };
-  
-
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
       <div className="card shadow-lg p-4" style={{ width: '100%', maxWidth: '400px' }}>
         <h2 className="text-center text-primary mb-4">Admin Login</h2>
-        
+
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">Username</label>
@@ -55,6 +50,7 @@ function AdminLogin() {
               onChange={(e) => setUsername(e.target.value)}
               className="form-control"
               placeholder="Enter your username"
+              required
             />
           </div>
 
@@ -67,6 +63,7 @@ function AdminLogin() {
               onChange={(e) => setPassword(e.target.value)}
               className="form-control"
               placeholder="Enter your password"
+              required
             />
           </div>
 
@@ -77,12 +74,17 @@ function AdminLogin() {
           )}
 
           <div className="d-grid gap-2">
-            <button type="submit" className="btn btn-primary">
-              Login
+            <button type="submit" className="btn btn-primary" disabled={loading}>
+              {loading ? (
+                // Show loading spinner instead of text
+                <Loading_Indicator small={true} />
+              ) : (
+                "Login"
+              )}
             </button>
           </div>
         </form>
-        
+
         <div className="text-center mt-3">
           <p className="text-muted">
             Don't have an account? <a href="/admin_signup" className="text-primary">Join Team</a>
