@@ -1,0 +1,5 @@
+/* Apply a black 2px solid border around the entire navbar */
+.navbar {
+    border: 2px solid black; 
+    border-radius: 0 0 5px 0 ; 
+}

@@ -42,7 +42,7 @@ function Home(props) {
     };
 
     return (
-        <div className="container mt-4">
+        <div className="container mt-0">
 
             {loading ? (
                 <div>

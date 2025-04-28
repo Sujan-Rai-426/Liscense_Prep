@@ -1,24 +1,31 @@
-
 import React from 'react'
 import { Link } from 'react-router-dom'
+import '../assets/css/Navbar.css'; 
 
 function Navbar(props) {
     return (
         <>
-        
             <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
                 <div className="container-fluid">
 
                     {/* Triggre button to toggle the mode */}
-                    <Link onClick={props.toggleMode} className='px-10' > <b> {props.mode.backgroundColor === '#f5f7fa'? (<i className="bi bi-brightness-high-fill mx-3 fs-3"></i>) : (<i className="bi bi-brightness-low-fill mx-3 fs-3 "></i>)} </b> </Link>
+                    <Link onClick={props.toggleMode} className='px-10'> 
+                        <b>
+                            {props.mode.backgroundColor === '#f5f7fa' ? (
+                                <i className="bi bi-brightness-high-fill mx-3 fs-3"></i>
+                            ) : (
+                                <i className="bi bi-brightness-low-fill mx-3 fs-3"></i>
+                            )}
+                        </b>
+                    </Link>
 
-                    <Link className="navbar-brand" to="/admin"> <b>Er.Liscense <sup>MCQ</sup></b></Link>
+                    <Link className="navbar-brand" to="/admin">
+                        <b>Er.Liscense <sup>MCQ</sup></b>
+                    </Link>
                     
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-
-
 
                     <div className="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul className="navbar-nav">
@@ -43,13 +50,8 @@ function Navbar(props) {
                             </li>
                         </ul>
                     </div>
-
-
                 </div>
-                
-                
             </nav>
-
         </>
     )
 }
