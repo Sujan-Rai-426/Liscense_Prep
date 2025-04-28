@@ -24,38 +24,51 @@ function Home() {
 
 
     return (
-        <div>
-            {Array.isArray(questions) && questions.map((question, index) => (
-                <div key={question.id} className="my-3">
-                    <div className="card-body">
+        <>
 
-                        {/* Question */}
-                        <h5 className="card-title"> <b>{index+1}.</b> {question.question}</h5>
-
-                         {/*Flexbox Display options with labels */}
-                        {question.options.map((option, index) => (
-                            <p key={option.id} className="option">
-                                {getOptionLabel(index)} {option.option}
-                            </p>
-                        ))}
-
-
-                        {/* <------ Dropdown button to show the correct answer -----> */}
-                        <div className="btn-group dropend my-2">
-                            <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                Answer:
-                            </button>
-                            <ul className="dropdown-menu mx-3">
-                                <li><button className="dropdown-item py-0 mx-2" type="button"> <b>{question.correct_answer}</b> </button></li>
-                            </ul>
-                        </div>
-
-
-                    </div>
+            {loading ? (
+                // If loading is true shows loading indicator
+                <div style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+                    {/* Show the loading indicator when loading is true */}
+                    <Loading_Indicator />
                 </div>
-            ))}
+            ) :(
 
-        </div>
+                // If not loading shows actual content
+                <div>
+                {Array.isArray(questions) && questions.map((question, index) => (
+                    <div key={question.id} className="my-3">
+                        <div className="card-body">
+
+                            {/* Question */}
+                            <h5 className="card-title"> <b>{index+1}.</b> {question.question}</h5>
+
+                            {/*Flexbox Display options with labels */}
+                            {question.options.map((option, index) => (
+                                <p key={option.id} className="option">
+                                    {getOptionLabel(index)} {option.option}
+                                </p>
+                            ))}
+
+
+                            {/* <------ Dropdown button to show the correct answer -----> */}
+                            <div className="btn-group dropend my-2">
+                                <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Answer:
+                                </button>
+                                <ul className="dropdown-menu mx-3">
+                                    <li><button className="dropdown-item py-0 mx-2" type="button"> <b>{question.correct_answer}</b> </button></li>
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+                ))}
+                
+                </div>
+            )}
+        </>
     )
 }
 
