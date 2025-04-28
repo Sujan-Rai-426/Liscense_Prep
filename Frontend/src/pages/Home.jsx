@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../api';
 import '../assets/css/Skeleton_Loader.css'; // Import skeleton loader CSS
 
-function Home() {
+function Home(props) {
     const [questions, setQuestions] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -51,8 +51,8 @@ function Home() {
             ) : (
                 <div>
                     {Array.isArray(questions) && questions.map((question, index) => (
-                        <div key={question.id} className="my-3 card shadow-sm">
-                            <div className="card-body">
+                        <div key={question.id} className="my-3 card shadow-sm" style={props.mode}>
+                            <div className="card-body" >
 
                                 {/* Question */}
                                 <h5 className="card-title"> <b>{index+1}.</b> {question.question}</h5>

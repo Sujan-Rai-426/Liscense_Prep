@@ -41,7 +41,7 @@ function App() {
         <div className="container min-vh-100">
         <Routes>
             {/* Routes that don't need Authorization */}
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<Home mode={mode} />} />
           <Route exact path="/admin_login" element={<Admin_Login />} />
           <Route exact path='/admin_signup' element={ <Admin_Signup mode={mode} /> } />
 
