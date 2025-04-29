@@ -80,7 +80,7 @@ function Home(props) {
                                                         </button>
                                                         <ul className="dropdown-menu mx-3">
                                                             <li>
-                                                                <button className="dropdown-item text-success fw-bold py-0 mx-3" type="button">
+                                                                <button className="dropdown-item text-success fw-bold mx-0 my-0 py-0 px-3" type="button">
                                                                     {question.correct_answer}
                                                                 </button>
                                                             </li>
