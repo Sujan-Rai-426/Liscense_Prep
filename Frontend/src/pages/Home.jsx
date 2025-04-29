@@ -63,7 +63,7 @@ function Home(props) {
                                 style={{ cursor: 'pointer' }}
                             >
                                 <span className="badge bg-primary me-2">{chapterIndex + 1}</span>
-                                {chapter.name}
+                                <u>{chapter.name}</u>
                             </h4>
 
                             {/* Questions */}
