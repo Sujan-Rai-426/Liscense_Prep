@@ -1,43 +1,15 @@
-
-/* Skeleton base style */
+/* Skeleton_Loader.css (add this if not present) */
 .skeleton {
     background-color: #e0e0e0;
     border-radius: 4px;
     animation: pulse 1.5s infinite ease-in-out;
 }
+.skeleton-title { height: 20px; width: 60%; }
+.skeleton-option { height: 16px; width: 80%; }
+.skeleton-button { height: 30px; width: 100px; }
 
-/* Decrease the gap between options */
-.option {
-    margin-bottom: 5px; /* Decreased margin between options */
-    padding: 0;         /* Remove extra padding if needed */
-}
-
-
-/* Different sizes */
-.skeleton-title {
-    height: 20px;
-    width: 70%;
-}
-
-.skeleton-option {
-    height: 16px;
-    width: 50%;
-}
-
-.skeleton-button {
-    height: 32px;
-    width: 100px;
-}
-
-/* Pulsing animation */
 @keyframes pulse {
-    0% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.4;
-    }
-    100% {
-        opacity: 1;
-    }
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
 }

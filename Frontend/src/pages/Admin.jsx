@@ -3,47 +3,48 @@ import { useNavigate } from 'react-router-dom';
 import api from '../api';
 
 function AddQuestion(props) {
-
   const navigate = useNavigate();
 
   const [question, setQuestion] = useState('');
   const [options, setOptions] = useState(['', '', '', '']);
   const [correctAnswer, setCorrectAnswer] = useState('');
-
   const [chapters, setChapters] = useState([]);
   const [selectedChapter, setSelectedChapter] = useState('');
 
-
-    // Fetch chapters when the component mounts
-    useEffect(() => {
-      api
-        .get('/api/v1/chapters/')
-        .then((response) => {
-          if (Array.isArray(response.data)) {
-            setChapters(response.data);
-          } else {
-            console.error("API did not return an array for chapters:", response.data);
-            setChapters([]);
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching chapters:", error);
-          setChapters([]);  // fallback to empty array to avoid crash
-        });
-    }, []);
-
+  // Fetch chapters when the component mounts
+  useEffect(() => {
+    api
+      .get('/api/v1/chapters/')
+      .then((response) => {
+        if (Array.isArray(response.data)) {
+          setChapters(response.data);
+        } else {
+          console.error("API did not return an array for chapters:", response.data);
+          setChapters([]);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching chapters:", error);
+        setChapters([]);
+      });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Prepare the payload for the POST request
+    // Validate chapter selection
+    if (!selectedChapter) {
+      alert("Please select a chapter before submitting.");
+      return;
+    }
+
     const payload = {
       question,
+      chapter: selectedChapter, // ✅ Add the selected chapter to the payload
       options: options.map((opt) => ({ option: opt })),
       correct_answer: [correctAnswer], // Assuming correct_answer should be an array
     };
 
-    // Call the POST API function
     postQuestion(payload);
   };
 
@@ -55,6 +56,7 @@ function AddQuestion(props) {
         setQuestion('');
         setOptions(['', '', '', '']);
         setCorrectAnswer('');
+        setSelectedChapter('');
       })
       .catch((error) => {
         console.error("Error adding question:", error);
@@ -62,60 +64,25 @@ function AddQuestion(props) {
       });
   };
 
-
-  
-  //  Logout function
   const handleLogout = () => {
-    // Remove the token and loggedIn status from localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('loggedIn');
-    
-    // Redirect to the login page
     navigate('/admin_login');
   };
 
-
-
   return (
-
     <form onSubmit={handleSubmit} className="p-4">
-    <div className="card shadow p-4" style={props.mode}>
-      <h2 className="mb-4 text-center">Add New Question</h2>
-  
+      <div className="card shadow p-4" style={props.mode}>
+        <h2 className="mb-4 text-center">Add New Question</h2>
 
-  {/* Shwos question */}
-      <div className="mb-3">
-        <label className="form-label">Question</label>
-        <input
-          type="text"
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          className="form-control"
-          placeholder="Enter your question here"
-          style={{
-            backgroundColor: props.mode.backgroundColor === '#f5f7fa' ? '#f0f2f5' : '#2e2e42',
-            color: props.mode.color,
-            border: "1px solid #ced4da",
-            transition: "all 0.3s ease"
-          }}
-        />
-      </div>
-  
-
-  {/* Shows Options field */}
-      {options.map((opt, index) => (
-        <div key={index} className="mb-3">
-          <label className="form-label">Option {String.fromCharCode(65 + index)}</label>
+        <div className="mb-3">
+          <label className="form-label">Question</label>
           <input
             type="text"
-            value={opt}
-            onChange={(e) => {
-              const newOptions = [...options];
-              newOptions[index] = e.target.value;
-              setOptions(newOptions);
-            }}
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
             className="form-control"
-            placeholder={`Enter option ${String.fromCharCode(65 + index)}`}
+            placeholder="Enter your question here"
             style={{
               backgroundColor: props.mode.backgroundColor === '#f5f7fa' ? '#f0f2f5' : '#2e2e42',
               color: props.mode.color,
@@ -124,30 +91,48 @@ function AddQuestion(props) {
             }}
           />
         </div>
-      ))}
-  
 
-  {/* Show correct Answer button */}
-      <div className="mb-3">
-        <label className="form-label">Correct Answer (exact text)</label>
-        <input
-          type="text"
-          value={correctAnswer}
-          onChange={(e) => setCorrectAnswer(e.target.value)}
-          className="form-control"
-          placeholder="Enter the correct answer text"
-          style={{
-            backgroundColor: props.mode.backgroundColor === '#f5f7fa' ? '#f0f2f5' : '#2e2e42',
-            color: props.mode.color,
-            border: "1px solid #ced4da",
-            transition: "all 0.3s ease"
-          }}
-        />
-      </div>
+        {options.map((opt, index) => (
+          <div key={index} className="mb-3">
+            <label className="form-label">Option {String.fromCharCode(65 + index)}</label>
+            <input
+              type="text"
+              value={opt}
+              onChange={(e) => {
+                const newOptions = [...options];
+                newOptions[index] = e.target.value;
+                setOptions(newOptions);
+              }}
+              className="form-control"
+              placeholder={`Enter option ${String.fromCharCode(65 + index)}`}
+              style={{
+                backgroundColor: props.mode.backgroundColor === '#f5f7fa' ? '#f0f2f5' : '#2e2e42',
+                color: props.mode.color,
+                border: "1px solid #ced4da",
+                transition: "all 0.3s ease"
+              }}
+            />
+          </div>
+        ))}
 
+        <div className="mb-3">
+          <label className="form-label">Correct Answer (exact text)</label>
+          <input
+            type="text"
+            value={correctAnswer}
+            onChange={(e) => setCorrectAnswer(e.target.value)}
+            className="form-control"
+            placeholder="Enter the correct answer text"
+            style={{
+              backgroundColor: props.mode.backgroundColor === '#f5f7fa' ? '#f0f2f5' : '#2e2e42',
+              color: props.mode.color,
+              border: "1px solid #ced4da",
+              transition: "all 0.3s ease"
+            }}
+          />
+        </div>
 
-{/* Select Chapter selecton field */}
-      <div className="mb-3">
+        <div className="mb-3">
           <label className="form-label">Select Chapter</label>
           <select
             value={selectedChapter}
@@ -161,7 +146,7 @@ function AddQuestion(props) {
             }}
           >
             <option value="">-- Select a Chapter --</option>
-            {Array.isArray(chapters) && chapters.map((chapter) => (
+            {chapters.map((chapter) => (
               <option key={chapter.id} value={chapter.id}>
                 {chapter.name}
               </option>
@@ -169,18 +154,12 @@ function AddQuestion(props) {
           </select>
         </div>
 
-  {/* Add question button */}
-      <div className="d-grid gap-2">
-        <button type="submit" className="btn btn-primary">
-          Add Question
-        </button>
-        <button onClick={handleLogout} type="button" className="btn btn-danger">
-          Logout
-        </button>
+        <div className="d-grid gap-2">
+          <button type="submit" className="btn btn-primary">Add Question</button>
+          <button onClick={handleLogout} type="button" className="btn btn-danger">Logout</button>
+        </div>
       </div>
-    </div>
-  </form>
-  
+    </form>
   );
 }
 

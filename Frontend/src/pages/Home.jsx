@@ -1,34 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
-import '../assets/css/Skeleton_Loader.css'; // Import skeleton loader CSS
+import '../assets/css/Skeleton_Loader.css'; // Skeleton loader styles
 
 function Home(props) {
-    const [questions, setQuestions] = useState([]);
+    const [chapters, setChapters] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [expandedChapter, setExpandedChapter] = useState(null);
 
     useEffect(() => {
-        api
-            .get("/api/v1/questions/")
+        api.get("/api/v1/chapters/")
             .then((response) => {
-                setQuestions(response.data);
+                setChapters(response.data);
             })
             .catch((error) => {
-                console.error("Error fetching questions: ", error);
+                console.error("Error fetching chapters: ", error);
             })
             .finally(() => {
-                setLoading(false); // Always stop loading (whether success or error)
+                setLoading(false);
             });
     }, []);
 
-    // Helper to show labels like a., b., c., d.
     const getOptionLabel = (index) => {
         const labels = ['a.', 'b.', 'c.', 'd.'];
         return labels[index] || '';
     };
 
-    // Create fake skeletons
     const renderSkeletons = () => {
-        const skeletonArray = Array(5).fill(0); // Show 5 fake questions loading
+        const skeletonArray = Array(5).fill(0);
         return skeletonArray.map((_, index) => (
             <div key={index} className="my-3 p-3 border rounded shadow-sm">
                 <div className="skeleton skeleton-title mb-2"></div>
@@ -41,45 +39,65 @@ function Home(props) {
         ));
     };
 
-    return (
-        <div className="container mt-0">
+    const toggleChapterQuestions = (chapterId) => {
+        setExpandedChapter(expandedChapter === chapterId ? null : chapterId);
+    };
 
+    return (
+        <div className="container mt-0 py-4">
             {loading ? (
-                <div>
-                    {renderSkeletons()}
-                </div>
+                renderSkeletons()
             ) : (
                 <div>
-                    {Array.isArray(questions) && questions.map((question, index) => (
-                        <div key={question.id} className="my-3 card shadow-sm" style={props.mode}>
-                            <div className="card-body" >
+                    {Array.isArray(chapters) && chapters.map((chapter, chapterIndex) => (
+                        <div key={chapter.id} className="mb-4">
+                            {/* Chapter Heading */}
+                            <h4
+                                className="chapter-name text-primary fw-bold mb-3"
+                                onClick={() => toggleChapterQuestions(chapter.id)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                <span className="badge bg-primary me-2">{chapterIndex + 1}</span>
+                                {chapter.name}
+                            </h4>
 
-                                {/* Question */}
-                                <h5 className="card-title"> <b>{index+1}.</b> {question.question}</h5>
-
-                                {/* Options */}
-                                {question.options.map((option, idx) => (
-                                    <p key={option.id} className="option">
-                                        {getOptionLabel(idx)} {option.option}
-                                    </p>
-                                ))}
-
-                                {/* Answer Button */}
-                                <div className="btn-group dropend my-2">
-                                    <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Answer:
-                                    </button>
-                                    <ul className="dropdown-menu mx-3">
-                                        <li><button className="dropdown-item py-0 mx-2" type="button"> <b>{question.correct_answer}</b> </button></li>
-                                    </ul>
+                            {/* Questions */}
+                            {expandedChapter === chapter.id && (
+                                <div>
+                                    {chapter.questions.length > 0 ? (
+                                        chapter.questions.map((question, index) => (
+                                            <div key={question.id} className="mb-3 card shadow-sm" style={props.mode}>
+                                                <div className="card-body">
+                                                    <h5 className="card-title"><b>{index + 1}.</b> {question.question}</h5>
+                                                    {question.options.map((option, idx) => (
+                                                        <p key={option.id} className="mb-1">
+                                                            {getOptionLabel(idx)} {option.option}
+                                                        </p>
+                                                    ))}
+                                                    <div className="btn-group dropend my-2">
+                                                        <button type="button" className="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Answer
+                                                        </button>
+                                                        <ul className="dropdown-menu mx-3">
+                                                            <li>
+                                                                <button className="dropdown-item text-success fw-bold py-0 mx-3" type="button">
+                                                                    {question.correct_answer}
+                                                                </button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <p className="text-muted">No questions available for this chapter.</p>
+                                    )}
                                 </div>
-
-                            </div>
+                            )}
                         </div>
                     ))}
                 </div>
             )}
-
         </div>
     );
 }

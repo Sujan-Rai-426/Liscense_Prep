@@ -14,7 +14,7 @@ class Question_Serializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['id', 'question', 'options', 'correct_answer']
+        fields = ['id', 'question', 'options', 'correct_answer', 'chapter']
 
     def get_correct_answer(self, obj):
         return [opt.option for opt in obj.options.filter(is_correct=True)]
