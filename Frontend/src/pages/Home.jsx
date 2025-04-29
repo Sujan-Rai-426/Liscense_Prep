@@ -46,7 +46,7 @@ function Home(props) {
     return (
         <div className="container mt-0 py-4">
             <div className='my-3 text-center text-danger fw-bold fs-4">'>
-                <b> --Some of the Past Questions chapter wise -- </b>
+                <b> --Some of the BCT License Past Questions chapter wise -- </b>
             </div>
             {loading ? (
                 renderSkeletons()
