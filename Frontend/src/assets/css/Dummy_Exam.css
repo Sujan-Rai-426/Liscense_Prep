@@ -1,0 +1,45 @@
+.timer {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: #fff3cd;
+    padding: 8px 15px;
+    border: 1px solid #ffeeba;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #856404;
+    z-index: 10000;
+}
+
+/* Optional: Make cards smaller font on mobile */
+@media (max-width: 576px) {
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .form-check-label {
+        font-size: 0.95rem;
+    }
+
+    .timer {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+        top: 20px;
+        right: 20px;
+    }
+}
+
+
+/* Skeleton loading style */
+.placeholder {
+    background: #e0e0e0;
+    border-radius: 4px;
+    height: 1.2rem;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
