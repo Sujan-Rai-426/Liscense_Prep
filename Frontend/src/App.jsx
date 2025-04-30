@@ -16,20 +16,20 @@ function App() {
 
   // <---------------------> State to manage the mode (light/dark) <---------------------->
   const [mode, setMode] = useState({
-    backgroundColor: '#f5f7fa', // Light mode background
-    color: '#212529'             // Dark Text color
+    backgroundColor: '#1e1e2f', // Dark mode background
+    color: '#e0e0e0'            // Light Text Color 
   });
   
   const toggleMode = () => {
-    if (mode.backgroundColor === '#f5f7fa') {
+    if (mode.backgroundColor === '#1e1e2f') {
       setMode({
-        backgroundColor: '#1e1e2f', // Dark mode background
-        color: '#e0e0e0'            // Light Text Color 
+        backgroundColor: '#f5f7fa',// light mode background
+        color: '#212529'        // Dark Text Color  
       });
     } else {
       setMode({
-        backgroundColor: '#f5f7fa',
-        color: '#212529'
+        backgroundColor: '#1e1e2f', // Dark mode background
+        color: '#e0e0e0'            // Light Text Color 
       });
     }
   };
