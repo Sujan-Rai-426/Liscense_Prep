@@ -9,6 +9,8 @@ function Dummy_Exam(props) {
     const [timeLeft, setTimeLeft] = useState(2 * 60 * 60);
     const [loading, setLoading] = useState(true);
 
+
+    // Function to fetch random questions from the API
     useEffect(() => {
         api.get('/api/v1/questions/')
             .then((response) => {
@@ -19,6 +21,9 @@ function Dummy_Exam(props) {
             .finally(() => setLoading(false));
     }, []);
 
+
+    
+    // Function to handle the countdown timer
     useEffect(() => {
         if (timeLeft <= 0 && !submitted) {
             handleSubmit();
@@ -28,6 +33,8 @@ function Dummy_Exam(props) {
         return () => clearInterval(timer);
     }, [timeLeft, submitted]);
 
+
+    // Function to format time in HH:MM:SS
     const formatTime = (seconds) => {
         const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
         const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
@@ -35,14 +42,18 @@ function Dummy_Exam(props) {
         return `${h}:${m}:${s}`;
     };
 
+
+    // Function to handle option change
     const handleOptionChange = (questionId, optionText) => {
         setAnswers({ ...answers, [questionId]: optionText });
     };
 
+    // Function to handle form submission
     const handleSubmit = () => {
         setSubmitted(true);
     };
 
+    // Calculate score based on answers and correct answers
     const score = questions.reduce((acc, q) => {
         const selected = answers[q.id];
         const correct = q.correct_answer?.[0]; // Assuming correct_answer is always a list with one string
@@ -56,7 +67,7 @@ function Dummy_Exam(props) {
         <div className="container py-5 position-relative">
             {/* Timer */}
             <div className="timer position-fixed top-0 end-0 p-3 bg-light shadow rounded m-3">
-                ⏳ Time Left: {formatTime(timeLeft)}
+                ⏳ : {formatTime(timeLeft)}
             </div>
 
             {/* Skeleton while loading */}
