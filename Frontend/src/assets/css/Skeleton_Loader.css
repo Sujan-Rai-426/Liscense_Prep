@@ -21,7 +21,7 @@
     bottom: 5px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 999;
+    z-index: 10001;
     padding: 10px 20px;
     width: auto;
     border-radius: 5px;
