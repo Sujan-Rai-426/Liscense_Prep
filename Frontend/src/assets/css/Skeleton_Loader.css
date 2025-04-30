@@ -13,3 +13,37 @@
     50% { opacity: 0.4; }
     100% { opacity: 1; }
 }
+
+
+/* Back to chapter button in Home of question */
+.fixed-top-back-button {
+    position: fixed;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    padding: 10px 20px;
+    width: auto;
+    border-radius: 5px;
+    font-weight: bold;
+    background-color: #f44336;
+    color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fixed-top-back-button:hover {
+    background-color: #d32f2f;
+}
+
+
+/* Default font size for chapter names */
+.chapter-name {
+    font-size: 1.5rem; /* Adjust this as needed */
+}
+
+/* Adjust font size for smaller screens (mobile devices) */
+@media (max-width: 768px) {
+    .chapter-name {
+        font-size: 1.2rem; /* Smaller font size for mobile */
+    }
+}

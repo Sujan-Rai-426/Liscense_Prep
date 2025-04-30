@@ -45,11 +45,12 @@ function Home(props) {
 
     return (
         <div className="container mt-0 py-4">
-            <div className='my-3 text-center text-danger fw-bold fs-4">'>
+            <div className='my-3 text-center text-danger fw-bold fs-0 '>
                 <b> Some of the BCT License Past Questions </b>
-                                    <br />
+                <br />
                 <i> -- <u> More content will be added very soon </u> -- </i>
             </div>
+
             {loading ? (
                 renderSkeletons()
             ) : (
@@ -66,21 +67,37 @@ function Home(props) {
                                 <u>{chapter.name}</u>
                             </h4>
 
-                            {/* Questions */}
+                            {/* Expanded Chapter View */}
                             {expandedChapter === chapter.id && (
                                 <div>
+                                    {/* Fixed Back Button */}
+                                    <button
+                                        className="btn btn-outline-danger mb-3 fixed-top-back-button"
+                                        onClick={() => setExpandedChapter(null)}
+                                    >
+                                        ← Back to Chapters
+                                    </button>
+
+                                    {/* All Questions of This Chapter */}
                                     {chapter.questions.length > 0 ? (
                                         chapter.questions.map((question, index) => (
                                             <div key={question.id} className="mb-3 card shadow-sm" style={props.mode}>
                                                 <div className="card-body">
-                                                    <h5 className="card-title"><b>{index + 1}.</b> {question.question}</h5>
+                                                    <h5 className="card-title">
+                                                        <b>{index + 1}.</b> {question.question}
+                                                    </h5>
                                                     {question.options.map((option, idx) => (
                                                         <p key={option.id} className="mb-1">
                                                             {getOptionLabel(idx)} {option.option}
                                                         </p>
                                                     ))}
                                                     <div className="btn-group dropend my-2">
-                                                        <button type="button" className="btn btn-outline-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <button
+                                                            type="button"
+                                                            className="btn btn-outline-success dropdown-toggle"
+                                                            data-bs-toggle="dropdown"
+                                                            aria-expanded="false"
+                                                        >
                                                             Answer
                                                         </button>
                                                         <ul className="dropdown-menu mx-3">
