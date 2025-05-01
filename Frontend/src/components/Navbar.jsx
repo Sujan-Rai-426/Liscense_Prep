@@ -19,7 +19,7 @@ function Navbar(props) {
                         </b>
                     </Link>
 
-                    <Link className="navbar-brand" to="/admin">
+                    <Link className="navbar-brand" to="https://liscense-prep.onrender.com/">
                         <b>Er.Liscense <sup>MCQ</sup></b>
                     </Link>
                     
