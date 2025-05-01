@@ -44,7 +44,7 @@ function Navbar(props) {
                                 </Link>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <li><Link className="dropdown-item" to="https://www.sujan140.com.np/">Developer</Link></li>
-                                    <li><Link className="dropdown-item" to="/unavailable"> BCT Notes </Link></li>
+                                    <li><Link className="dropdown-item" to="https://computer-engineering-notes.vercel.app/"> BCT Notes </Link></li>
                                     <li><Link className="dropdown-item" to="/unavailable"> BCT License Notes </Link></li>
                                 </ul>
                             </li>
