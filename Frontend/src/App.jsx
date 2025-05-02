@@ -1,4 +1,8 @@
 import { useState } from "react";
+
+// For vercel analytics
+import { Analytics } from "@vercel/analytics/react"
+
 import './App.css';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -53,6 +57,10 @@ function App() {
             <Route exact path="/admin" element={<Admin mode={mode} />} />
           </Route>
         </Routes>
+
+
+        {/* Add Vercel Analytics at the bottom */}
+          <Analytics />
 
         </div>
       </div>
