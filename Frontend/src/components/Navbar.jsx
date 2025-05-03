@@ -46,6 +46,7 @@ function Navbar(props) {
                                     <li><Link className="dropdown-item" to="https://www.sujan140.com.np/">Developer</Link></li>
                                     <li><Link className="dropdown-item" to="https://computer-engineering-notes.vercel.app/"> BCT Notes </Link></li>
                                     <li><Link className="dropdown-item" to="/unavailable"> BCT License Notes </Link></li>
+                                    <li><Link className="dropdown-item" to="https://nec.gov.np/pages/Professional/Notice"> NEC Notice </Link></li>
                                 </ul>
                             </li>
                         </ul>
