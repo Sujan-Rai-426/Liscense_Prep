@@ -15,6 +15,7 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Admin_Signup from "./pages/Admin_Signup";
 import Unavailable from "./pages/Unavailable";
 import Dummy_Exam from "./pages/Dummy_Exam";
+import About from "./pages/About";
 
 function App() {
 
@@ -52,6 +53,9 @@ function App() {
           <Route exact path="/admin_login" element={<Admin_Login mode={mode} />} />
           <Route exact path='/admin_signup' element={ <Admin_Signup mode={mode} /> } />
           <Route exact path='/dummy_exam' element={ <Dummy_Exam mode={mode} /> } />
+          <Route exact path="/about" element={<About mode={mode} />} />
+
+          
           {/* Protected Routes where only logged-in admins can access */}
           <Route element={<ProtectedRoute />}>
             <Route exact path="/admin" element={<Admin mode={mode} />} />

@@ -20,7 +20,7 @@ function Navbar(props) {
                     </Link>
 
                     <Link className="navbar-brand" to="https://liscense-prep.onrender.com/">
-                        <b>Er.Liscense <sup>MCQ</sup></b>
+                        <b> NEC-License <sup>Preps</sup></b>
                     </Link>
                     
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
