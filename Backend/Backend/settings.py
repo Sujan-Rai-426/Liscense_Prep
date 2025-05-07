@@ -100,8 +100,9 @@ if DEBUG: #debug is true
     }
 else:  #  Production configuration (PostgreSQL via railway) 
     DATABASES = {
-        'default': dj_database_url.parse(config('DATABASE_URL'))
+            'default': dj_database_url.parse(config('DATABASE_URL'))
     }
+
 
 
 
