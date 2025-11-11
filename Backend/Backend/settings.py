@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # Manually added apps
-    'rest_framework', 'corsheaders', 'Home', 'rest_framework_simplejwt', 
+    'rest_framework', 'corsheaders', 'Home', 'rest_framework_simplejwt'
 ]
 
 # manually added for simple jwt token authentication
