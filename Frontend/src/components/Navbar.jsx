@@ -19,7 +19,7 @@ function Navbar(props) {
                         </b>
                     </Link>
 
-                    <Link className="navbar-brand" to="https://liscense-prep.onrender.com/">
+                    <Link className="navbar-brand" to="https://liscense-prep.vercel.app/">
                         <b> NEC-License <sup>Preps</sup></b>
                     </Link>
                     
