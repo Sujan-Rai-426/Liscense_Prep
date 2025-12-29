@@ -2,10 +2,54 @@
 *{
     margin:0;
     padding:0;
+    transition: background-color 0.4s ease,
+            color 0.4s ease,
+            border-color 0.4s ease, 
+            box-shadow 0.4s ease;
 }
 *::before,
 *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+/* Custom scrollbar for a premium feel */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #6c757d;
+    border-radius: 10px;
+}
+/* App.css */
+:root {
+    --transition-speed: 0.3s;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* Ensure the wrapper div follows the mode */
+.app-wrapper {
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Responsive Font Sizes */
+@media (max-width: 768px) {
+    h4 { font-size: 1.25rem; }
+    .badge { font-size: 0.8rem; }
 }

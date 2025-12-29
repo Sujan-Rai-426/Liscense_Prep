@@ -16,6 +16,7 @@ import Admin_Signup from "./pages/Admin_Signup";
 import Unavailable from "./pages/Unavailable";
 import Dummy_Exam from "./pages/Dummy_Exam";
 import About from "./pages/About";
+import Parent_API_Provider from "./context/Parent_API_Provider";
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
 
 
   return (
+<Parent_API_Provider>
     <Router>
       <Navbar mode={mode} toggleMode={toggleMode} style={{ zIndex: 10 }} />
       
@@ -71,6 +73,7 @@ function App() {
 
       <Footer />
     </Router>
+</Parent_API_Provider>
   );
 }
 

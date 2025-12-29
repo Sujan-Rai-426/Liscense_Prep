@@ -1,45 +1,86 @@
-.timer {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-    background: #fff3cd;
-    padding: 8px 15px;
-    border: 1px solid #ffeeba;
-    border-radius: 5px;
-    font-weight: bold;
-    color: #856404;
-    z-index: 10000;
+
+
+/* Professional Sticky Timer */
+.timer-box {
+    top: 20px;
+    right: 20px;
+    background: #ffffff;
+    border: 2px solid #0d6efd;
+    color: #0d6efd;
+    font-weight: 800;
+    font-size: 1.1rem;
+    min-width: 160px;
+    text-align: center;
 }
 
-/* Optional: Make cards smaller font on mobile */
-@media (max-width: 576px) {
-    .card-title {
-        font-size: 1rem;
-    }
+/* Question Cards */
+.question-card {
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    border-radius: 16px !important;
+}
 
-    .form-check-label {
-        font-size: 0.95rem;
-    }
+/* Custom Option Inputs (Card Style) */
+.option-container {
+    position: relative;
+    margin-bottom: 12px;
+}
 
-    .timer {
-        font-size: 0.9rem;
-        padding: 6px 10px;
-        top: 20px;
+.option-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.option-label {
+    display: block;
+    padding: 15px 20px;
+    background: rgba(125, 125, 125, 0.05);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+}
+
+/* Selection Effect */
+.option-input:checked + .option-label {
+    background: rgba(13, 110, 253, 0.1) !important;
+    border-color: #0d6efd !important;
+    color: #0d6efd !important;
+    transform: translateX(5px);
+}
+
+/* Post-Submission Styles */
+.correct-reveal {
+    background: #d1e7dd !important; /* light green */
+    border-color: #198754 !important;
+    color: #0f5132 !important;
+}
+
+.wrong-selection {
+    background: #f8d7da !important; /* light red */
+    border-color: #dc3545 !important;
+    color: #842029 !important;
+}
+
+.option-input:disabled + .option-label {
+    cursor: default;
+}
+
+/* Result Overview Card */
+.result-card {
+    border: none;
+    border-left: 10px solid #198754 !important;
+    border-radius: 16px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .timer-box {
+        top: auto;
+        bottom: 20px;
         right: 20px;
+        min-width: 140px;
     }
-}
-
-
-/* Skeleton loading style */
-.placeholder {
-    background: #e0e0e0;
-    border-radius: 4px;
-    height: 1.2rem;
-    animation: pulse 1.5s infinite ease-in-out;
-}
-
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.4; }
-    100% { opacity: 1; }
 }

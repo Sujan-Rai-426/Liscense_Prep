@@ -1,0 +1,146 @@
+/* Chapter Styling */
+/* Chapter Headers */
+.chapter-name {
+    transition: all 0.3s ease;
+    padding: 1.2rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(125, 125, 125, 0.1);
+    background: rgba(125, 125, 125, 0.05);
+    margin-bottom: 0.8rem;
+}
+
+.chapter-name:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+    transform: translateX(8px);
+}
+
+/* Options Layout */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.option-item {
+    padding: 14px 18px;
+    border-radius: 10px;
+    background: rgba(125, 125, 125, 0.08);
+    border: 2px solid transparent;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.correct-glow::after {
+    content: " ✓";
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Sticky Navigation */
+.fixed-top-back-button {
+    position: sticky;
+    top: 20px;
+    z-index: 1000;
+    border-radius: 30px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+
+.header-badge {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+}
+
+/* Question Cards */
+.card {
+    border: none !important;
+    border-radius: 16px !important;
+    margin-bottom: 2rem !important;
+    transition: transform 0.3s ease;
+}
+
+/* Options Grid */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.option-item {
+    padding: 14px 18px;
+    border-radius: 10px;
+    background: rgba(125, 125, 125, 0.08);
+    border: 2px solid transparent;
+    font-size: 0.95rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* CORRECT ANSWER GLOW EFFECT */
+.correct-glow {
+    background-color: rgba(40, 167, 69, 0.15) !important;
+    border-color: #28a745 !important;
+    color: #28a745 !important;
+    font-weight: 600;
+    transform: scale(1.01);
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+}
+
+/* Dark mode specific override for better contrast */
+[style*="background-color: #1e1e2f"] .correct-glow {
+    background-color: rgba(40, 167, 69, 0.25) !important;
+    color: #4cd137 !important;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .options-grid { grid-template-columns: 1fr; }
+    .fixed-top-back-button { width: 100%; top: 10px; }
+}
+
+
+
+/* ============================
+        SKELETON LOADER
+==============================*/
+/* Container for the shimmer effect */
+/* Skeleton_Loader.css */
+/* Skeleton_Loader.css */
+.skeleton-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-shimmer {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.08) 50%,
+        transparent 100%
+    );
+    animation: shimmer-effect 1.6s infinite;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 1;
+}
+
+@keyframes shimmer-effect {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.skeleton-box {
+    background: rgba(125, 125, 125, 0.15);
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.skeleton-title { width: 80%; height: 24px; }
+.skeleton-text { width: 100%; height: 45px; border-radius: 10px; }
+.skeleton-btn { width: 120px; height: 32px; border-radius: 20px; }
